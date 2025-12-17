@@ -1,0 +1,1390 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Halo Ilmuwan Muda — Chemistry in Daily Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfdff;
+  --card:#ffffff;
+  --primary:#3b5cff;
+  --accent:#7dd3fc;
+  --muted:#556070;
+  --glass:#eef6ff;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  font-family:Poppins,system-ui,Arial;
+  margin:0;
+  background: linear-gradient(
+    180deg,
+    #afc9f8 0%,
+    #cdddff 40%,
+    #86a7d9 100%
+  );
+  color:#0b1726;
+}
+header{padding:28px 18px;text-align:center;background:linear-gradient(180deg,#afc9f8,#f3f7ff);border-bottom:1px solid var(--glass)}
+header h1{margin:0;font-size:2.5rem;color:var(--primary)}
+header p{margin:10px 0 16px;color:var(--muted)}
+.top-actions{display:flex;gap:12px;justify-content:center}
+.btn{background:var(--primary);color:white;padding:10px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer}
+.btn.ghost{background:white;color:var(--primary);border:1px solid var(--glass)}
+main{
+  max-width:1200px;
+  margin:30px auto;
+  padding:0 18px;
+}
+.hero{background:white;border:1px solid var(--glass);border-radius:16px;padding:22px;display:flex;gap:20px;align-items:center}
+.hero h2{margin:0;color:var(--primary)}
+.hero p{color:var(--muted);line-height:1.6}
+.hero img{width:200px;height:120px;object-fit:cover;border-radius:12px}
+.materi{margin-top:22px;background:white;border:1px solid var(--glass);border-radius:16px;padding:22px}
+.materi h3{margin-top:0;color:var(--primary)}
+.materi p{line-height:1.7;color:var(--muted)}
+.area{margin-top:28px}
+.area h3{color:var(--primary)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:14px}
+.card{perspective:1200px}
+.inner{
+  position:relative;
+  min-height:440px;      /* ⬅ lebih tinggi */
+  border-radius:16px;
+  transition:transform .7s;
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+.inner.is-flipped{
+  transform:rotateY(180deg);
+}
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:16px;
+  overflow-y:auto;      /* ⬅ BISA SCROLL */
+  scrollbar-width: thin;
+}
+.front img{
+  width:100%;
+  height:130px;         /* ⬅ dikunci */
+  object-fit:cover;
+  border-radius:10px;
+  flex-shrink:0;
+}
+.face::-webkit-scrollbar{
+  width:6px;
+}
+.face::-webkit-scrollbar-thumb{
+  background:rgba(59,92,255,.35);
+  border-radius:10px;
+}
+.prompt{text-align:center;font-weight:700;margin-top:8px}
+.back{transform:rotateY(180deg);background:linear-gradient(180deg,var(--primary),#2744d6);color:white;justify-content:center;text-align:center}
+.answer{font-size:1.05rem;font-weight:800}
+.explain{margin-top:8px;font-size:.95rem;opacity:.95}
+footer{text-align:center;color:var(--muted);padding:30px}
+.howto{
+  margin-top:30px;
+  background:linear-gradient(180deg,#ffffff,#f6faff);
+  padding:22px;
+  border-radius:14px;
+  border:1px solid var(--glass);
+}
+.howto h3{
+  margin-top:0;
+  color:var(--primary);
+}
+.howto p{
+  color:var(--muted);
+  line-height:1.6;
+}
+.hero-header{
+  background-image: url("images/header.jpg")
+  height: 360px;
+}
+.hero-header h1,
+.hero-header p,
+.top-actions{
+  animation: fadeUp .9s ease both;
+}
+.hero-header p{animation-delay:.15s}
+.top-actions{animation-delay:.3s}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:none}
+}
+.btn{
+  background: linear-gradient(135deg,#3b5cff,#6ea8ff);
+  color:white;
+  padding:12px 22px;
+  border-radius:999px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  letter-spacing:.3px;
+  box-shadow:0 10px 25px rgba(59,92,255,.35);
+  transition:all .3s ease;
+}
+.btn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 18px 40px rgba(59,92,255,.45);
+}
+.btn:active{
+  transform:scale(.97);
+}
+.area-buttons button{
+  background: linear-gradient(135deg,#ffffff,#f3f7ff);
+  border:1px solid var(--glass);
+  color:var(--primary);
+  font-weight:700;
+  padding:12px 18px;
+  border-radius:14px;
+  cursor:pointer;
+  box-shadow:
+    0 10px 25px rgba(59,92,255,.15),
+    inset 0 0 0 1px rgba(255,255,255,.7);
+  transition:all .3s ease;
+}
+.area-buttons button:hover{
+  background:linear-gradient(135deg,#3b5cff,#6ea8ff);
+  color:white;
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 18px 40px rgba(59,92,255,.4);
+}
+.materi h4 {
+  margin-top: 20px;
+}
+.materi ol li h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Kolom materi / card utama */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+
+  /* Bayangan biru navy lembut */
+  box-shadow: 0 4px 12px rgba(0, 0, 128, 0.2); /* navy + transparan */
+  
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efek hover untuk naik & bayangan lebih tegas */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 128, 0.3);
+}
+
+/* Flip card */
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  min-height: 150px;
+  backface-visibility: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 20px;
+  background-color: #fff;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: #f8f8f8;
+}
+/* Area pilihan jawaban */
+.choices{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  width:100%;
+  margin-top:12px;
+}
+
+/* Button jawaban */
+.choices button{
+  background: linear-gradient(135deg,#ffffff,#f2f6ff);
+  border:1.5px solid var(--glass);
+  color:var(--primary);
+  font-weight:700;
+  padding:12px 14px;
+  border-radius:14px;   /* kapsul/kotak halus */
+  cursor:pointer;
+  text-align:center;
+  box-shadow:
+    0 6px 14px rgba(59,92,255,.15),
+    inset 0 0 0 1px rgba(255,255,255,.6);
+  transition:all .25s ease;
+}
+
+/* Hover */
+.choices button:hover{
+  background:linear-gradient(135deg,#3b5cff,#6ea8ff);
+  color:white;
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(59,92,255,.35);
+}
+
+/* Klik */
+.choices button:active{
+  transform:scale(.97);
+}
+.back{
+  justify-content:flex-start;
+  text-align:center;
+  padding:20px;
+  overflow-y:auto;   /* bisa scroll kalau panjang */
+}
+
+.back details{
+  margin-top:12px;
+  font-size:.9rem;
+  text-align:left;
+}
+</style>
+</head>
+<body>
+<audio id="flipSound" src="sounds/correct-flip-card.mp3" preload="auto"></audio>
+<header class="hero-header">
+  <h1>Halo Ilmuwan Muda!</h1>
+  <p>Chemistry in Daily Life — portal flip card kimia yang dekat dengan kehidupanmu ✨</p>
+  <div class="top-actions">
+   <button class="btn" data-target="materi">Materi</button>
+   <button class="btn" data-target="cara-main">Flip Card</button>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div>
+      <h2>Kimia Itu Dekat & Seru</h2>
+      <p>Kimia bukan cuma rumus di papan tulis. Dari dapur, kamar mandi, sekolah, sampai pabrik — semuanya bekerja dengan prinsip kimia. Klik kartu, tebak isinya, lalu balik untuk melihat jawabannya.</p>
+    </div>
+   </div>
+
+<section id="materi" class="materi">
+  <h3>Cabang Ilmu Kimia</h3>
+  <div class="card">
+  <ol>
+  <li>
+    <h4>Kimia Organik</h4>
+    <p>Kimia organik berfokus pada senyawa-senyawa yang mengandung karbon, terutama yang ditemukan dalam makhluk hidup. Kajian dalam kimia organik meliputi struktur, sifat, reaksi, dan sintesis senyawa organik.</p>
+  </li>
+  <li>
+    <h4>Kimia Anorganik</h4>
+    <p>Sebaliknya, kimia anorganik akan menyelidiki senyawa yang umumnya tidak mengandung karbon, seperti mineral, senyawa logam (besi, tembaga, dan platinum) dan senyawa non-logam (oksida, halida, dan asam-basa anorganik).</p>
+  </li>
+  <li>
+    <h4>Kimia Analitik</h4>
+    <p>Kimia analitik adalah cabang ilmu kimia yang berfokus pada teknik dan metode untuk menganalisis komposisi dan struktur materi. Tujuannya untuk mengidentifikasi dan mengukur bahan kimia dalam sampel, baik itu dalam bentuk padat, cair, atau gas.</p>
+  </li>
+  <li>
+    <h4>Kimia Fisik</h4>
+    <p>Kimia fisik mempelajari prinsip-prinsip fisika yang mendasari sifat-sifat materi dan perubahan kimia yang terjadi pada materi tersebut. Konsep seperti termodinamika, kinetika kimia, dan mekanika kuantum merupakan bagian dari kimia fisik.</p>
+  </li>
+  <li>
+    <h4>Biokimia</h4>
+    <p>Biokimia adalah cabang ilmu kimia yang mempelajari proses kimia dan molekul-molekul yang terjadi dalam makhluk hidup. Biokimia mencakup topik seperti enzim, metabolisme, serta molekul-molekul biologis seperti protein, asam nukleat, karbohidrat, dan lipid.</p>
+  </li>
+  <li>
+    <h4>Kimia Polimer</h4>
+    <p>Sesuai namanya, kimia polimer akan fokus mempelajari polimer, yaitu molekul besar yang terdiri dari unit-unit kecil yang berulang, disebut monomer. Polimer dapat berupa bahan sintetis seperti plastik atau bahan alami seperti protein dan DNA.</p>
+  </li>
+  <li>
+    <h4>Kimia Material</h4>
+    <p>Kimia material akan memahami sifat-sifat bahan, struktur, dan cara untuk mengubah atau memperbaiki sifat bahan tersebut.</p>
+  </li>
+  <li>
+    <h4>Kimia Toeritis</h4>
+    <p>Kimia teoritis akan menggunakan metode matematika dan komputer untuk memahami serta memprediksi perilaku molekul dan reaksi kimia. Kimia teoritis berupaya mengembangkan model dan teori untuk menjelaskan fenomena kimia berdasarkan prinsip-prinsip fisika dan matematika.</p>
+  </li>
+  </ol>
+
+  <p>
+    Tanpa kimia, tidak akan ada obat, sabun, pupuk, baterai, makanan awet, maupun teknologi modern.
+    Kimia membantu manusia hidup lebih sehat, nyaman, dan berkelanjutan.
+  </p>
+</div>
+</section>
+
+  <section id="cara-main" class="cara-main">
+    <div class="card"
+  <h3><b>🎮 Cara Main Flip Card</b></h3>
+  <p>
+    Kamu akan menjelajahi dunia <b>kimia dalam kehidupan sehari-hari</b> melalui beberapa area.
+    Setiap area berisi kartu tebakan.  
+    <br><br>
+    👉 <b>Klik kartu</b> untuk membaliknya dan melihat <b>jawaban serta penjelasan kimianya</b>.
+    Tidak ada skor, tidak ada salah — fokus kita adalah <b>belajar santai dan seru</b> 🧪✨
+  </p>
+
+  <p style="margin-top:14px">
+    <b>Area yang bisa kamu jelajahi:</b>
+  </p>
+
+  <div class="area-buttons">
+    <button class="btn" data-target="dapur">🍳 Dapur</button>
+    <button class="btn" data-target="kamar-mandi">🛁 Kamar Mandi</button>
+    <button class="btn" data-target="sekolah">🏫 Sekolah</button>
+    <button class="btn" data-target="pabrik">🏭 Pabrik</button>
+    <button class="btn" data-target="taman">🌿 Taman</button>
+    <button class="btn" data-target="supermarket">🛒 Supermarket</button>
+  </div>
+</div>
+</section>
+
+  <section id="cards">
+  <div class="area" id="dapur">
+  <h3>🍳 Dapur</h3>
+  <div class="grid">
+
+    <!-- 1. BAWANG -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/bawang.jpg">
+          <div class="prompt">Kenapa saat memotong bawang, mata menjadi perih?</div>
+          <div class="choices">
+            <button>Karena baunya menyengat</button>
+            <button>Karena ada zat alami yang bereaksi</button>
+            <button>Karena bawang itu pedas</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena zat alami pada bawang bereaksi</div>
+          <div class="explain">
+            Saat bawang dipotong, zat di dalamnya bercampur dan
+            menghasilkan gas yang mengiritasi mata.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Enzim <b>alliinase</b> bereaksi dengan asam amino sulfur
+              membentuk gas iritan.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SODA KUE -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/soda-kue.jpg">
+          <div class="prompt">Kenapa soda kue bisa mengembang?</div>
+          <div class="choices">
+            <button>Karena terkena panas</button>
+            <button>Karena menghasilkan gas</button>
+            <button>Karena menyerap air</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena menghasilkan gas</div>
+          <div class="explain">
+            Saat bereaksi, soda kue melepaskan gas yang membuat adonan mengembang.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Natrium bikarbonat (<b>NaHCO₃</b>) menghasilkan gas CO₂
+              saat dipanaskan atau bereaksi dengan asam.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CUKA -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/cuka.jpg">
+          <div class="prompt">Rasa asam pada cuka berasal dari?</div>
+          <div class="choices">
+            <button>Garam mineral</button>
+            <button>Zat asam alami</button>
+            <button>Gula hasil fermentasi</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Zat asam alami</div>
+          <div class="explain">
+            Cuka memiliki rasa asam khas karena mengandung senyawa asam.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Asam asetat (<b>CH₃COOH</b>) adalah asam lemah yang
+              memberi rasa asam pada cuka.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. GARAM -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/garam.jpg">
+          <div class="prompt">Garam dapur mengandung apa?</div>
+          <div class="choices">
+            <button>Mineral alami</button>
+            <button>Campuran gula dan air</button>
+            <button>Zat pengawet buatan</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Mineral alami</div>
+          <div class="explain">
+            Garam digunakan sehari-hari untuk memberi rasa dan menjaga keseimbangan tubuh.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Garam dapur adalah natrium klorida (<b>NaCl</b>),
+              senyawa ionik penting bagi tubuh.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. KOPI -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/kopi.jpg">
+          <div class="prompt">Kopi bisa membuat kita melek karena?</div>
+          <div class="choices">
+            <button>Rasanya pahit</button>
+            <button>Kandungannya memicu otak</button>
+            <button>Suhunya panas</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Kandungannya memicu otak</div>
+          <div class="explain">
+            Kopi membantu mengurangi rasa kantuk dan meningkatkan fokus.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Kafein bekerja dengan merangsang sistem saraf pusat.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+    <div class="area" id="kamar-mandi">
+  <h3>🚿 Kamar Mandi</h3>
+  <div class="grid">
+
+    <!-- 1. SAMPO -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/shampoo.jpg">
+          <div class="prompt">Kenapa sampo bisa berbusa?</div>
+          <div class="choices">
+            <button>Karena bercampur udara</button>
+            <button>Karena mengandung zat pembersih</button>
+            <button>Karena terkena air panas</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena mengandung zat pembersih</div>
+          <div class="explain">
+            Zat di dalam sampo membantu mengangkat kotoran dan minyak dari rambut.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Sampo mengandung surfaktan seperti
+              <b>Sodium Lauryl Sulfate</b> yang menurunkan tegangan permukaan air.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SABUN -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/sabun.jpg">
+          <div class="prompt">Sabun bersifat apa?</div>
+          <div class="choices">
+            <button>Asam</button>
+            <button>Netral</button>
+            <button>Basa</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Basa</div>
+          <div class="explain">
+            Sifat ini membuat sabun efektif mengangkat kotoran dan minyak.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Sabun dibuat dari reaksi asam lemak dengan basa
+              (reaksi saponifikasi).
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PASTA GIGI -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/pasta-gigi.jpg">
+          <div class="prompt">Pasta gigi sering mengandung?</div>
+          <div class="choices">
+            <button>Gula</button>
+            <button>Fluorida</button>
+            <button>Alkohol</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Fluorida</div>
+          <div class="explain">
+            Zat ini membantu menjaga kekuatan gigi dan mencegah kerusakan.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Fluorida membantu memperkuat enamel gigi
+              dan mencegah pembentukan asam oleh bakteri.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. AIR MENGGENANG -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/air-kamar-mandi.jpg">
+          <div class="prompt">
+            Kenapa air kamar mandi yang menggenang lama bisa berubah warna?
+          </div>
+          <div class="choices">
+            <button>Karena suhu ruangan</button>
+            <button>Karena reaksi dan mikroorganisme</button>
+            <button>Karena terkena cahaya</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena reaksi dan mikroorganisme</div>
+          <div class="explain">
+            Air yang lama diam dapat mengalami perubahan karena reaksi kimia
+            dan pertumbuhan mikroorganisme.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Terjadi reaksi oksidasi dan aktivitas mikroorganisme
+              yang memengaruhi warna air.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. KLOSET -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/kloset.jpg">
+          <div class="prompt">
+            Kenapa kloset bisa berubah kekuningan walau sering disiram?
+          </div>
+          <div class="choices">
+            <button>Karena air panas</button>
+            <button>Karena endapan dan reaksi kimia</button>
+            <button>Karena cahaya lampu</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena endapan dan reaksi kimia</div>
+          <div class="explain">
+            Endapan mineral dan sisa kotoran menumpuk lalu menyebabkan perubahan warna.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Senyawa mineral dan organik mengalami oksidasi
+              sehingga permukaan kloset tampak kekuningan.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+    <div class="area" id="sekolah">
+  <h3>🏫 Sekolah</h3>
+  <div class="grid">
+
+    <!-- 1. SPIDOL -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/tinta-spidol.jpg">
+          <div class="prompt">Kenapa tinta spidol cepat mengering?</div>
+          <div class="choices">
+            <button>Karena warnanya pekat</button>
+            <button>Karena pelarutnya mudah menguap</button>
+            <button>Karena terkena cahaya</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena pelarutnya mudah menguap</div>
+          <div class="explain">
+            Tinta spidol cepat kering saat terkena udara.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Spidol mengandung pelarut organik
+              yang mudah menguap sehingga tinta cepat kering.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KAPUR TULIS -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/kapur-tulis.jpg">
+          <div class="prompt">Kenapa kapur tulis meninggalkan debu di papan?</div>
+          <div class="choices">
+            <button>Karena kapur mudah patah</button>
+            <button>Karena partikel kapur mudah terlepas</button>
+            <button>Karena papan tulis kasar</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena partikel kapur mudah terlepas</div>
+          <div class="explain">
+            Saat digoreskan, kapur meninggalkan partikel halus di papan.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Kapur tulis tersusun dari kalsium karbonat
+              (<b>CaCO₃</b>) yang mudah terlepas sebagai partikel kecil.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. BATERAI -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/baterai.jpg">
+          <div class="prompt">Baterai jam dinding dapat menghasilkan apa?</div>
+          <div class="choices">
+            <button>Panas</button>
+            <button>Energi listrik</button>
+            <button>Cahaya</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Energi listrik</div>
+          <div class="explain">
+            Energi ini digunakan untuk menjalankan jam agar tetap bergerak.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Di dalam baterai terjadi reaksi redoks
+              yang menghasilkan aliran elektron (listrik).
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. TISU -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/kertas.jpg">
+          <div class="prompt">Apa bahan utama tisu?</div>
+          <div class="choices">
+            <button>Plastik halus</button>
+            <button>Serat tumbuhan</button>
+            <button>Serbuk mineral</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Serat tumbuhan</div>
+          <div class="explain">
+            Tisu dibuat dari serat alami yang mudah menyerap air.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Tisu tersusun dari serat selulosa
+              yang banyak terdapat pada kayu.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. LEM -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/lem.jpg">
+          <div class="prompt">Kenapa lem kertas bisa merekatkan?</div>
+          <div class="choices">
+            <button>Karena lengket sejak awal</button>
+            <button>Karena mengering dan mengikat kertas</button>
+            <button>Karena bereaksi dengan udara</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena mengering dan mengikat kertas</div>
+          <div class="explain">
+            Saat kering, lem membentuk ikatan yang menahan kertas tetap menyatu.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Lem kertas mengandung
+              <b>polivinil asetat (PVA)</b>
+              yang membentuk ikatan pada serat kertas.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="area" id="pabrik">
+  <div class="area-header">
+    <h3>🏭 Pabrik</h3>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. BAJA -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/baja.jpg">
+          <div class="prompt">Baja terbuat dari logam apa?</div>
+          <div class="choices">
+            <button>Besi murni</button>
+            <button>Besi dengan campuran lain</button>
+            <button>Aluminium</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Besi dengan campuran lain</div>
+          <div class="explain">
+            Baja lebih kuat dibandingkan besi biasa.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Baja merupakan campuran besi dengan karbon.
+              Karbon meningkatkan kekuatan dan kekerasan baja.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KACA -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/kaca.jpg">
+          <div class="prompt">Bahan utama kaca adalah?</div>
+          <div class="choices">
+            <button>Tanah liat</button>
+            <button>Pasir</button>
+            <button>Batu kapur</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Pasir</div>
+          <div class="explain">
+            Kaca dibuat dari bahan alam yang dipanaskan hingga meleleh.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Kaca terutama tersusun dari silika
+              (<b>SiO₂</b>) yang dilelehkan pada suhu tinggi.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PVC -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/Pipa-PVC.jpg">
+          <div class="prompt">Plastik PVC merupakan singkatan dari?</div>
+          <div class="choices">
+            <button>Polyvinyl Chloride</button>
+            <button>Plastic Vinyl Compound</button>
+            <button>Polymer Vinyl Carbon</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Polyvinyl Chloride</div>
+          <div class="explain">
+            PVC banyak digunakan pada pipa dan kabel.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              PVC adalah polimer yang tersusun dari
+              unit vinil klorida berulang.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ASAP PABRIK -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/asap-pabrik.jpg">
+          <div class="prompt">Kenapa asap pabrik berbahaya?</div>
+          <div class="choices">
+            <button>Karena berwarna gelap</button>
+            <button>Karena mengandung zat berbahaya</button>
+            <button>Karena suhunya panas</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena mengandung zat berbahaya</div>
+          <div class="explain">
+            Asap pabrik dapat mengganggu kesehatan pernapasan.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Asap pabrik dapat mengandung gas seperti
+              SO₂ dan NO₂ yang bersifat iritan bagi saluran napas.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SEMEN -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/cement.jpg">
+          <div class="prompt">Kenapa semen bisa mengeras?</div>
+          <div class="choices">
+            <button>Karena terkena udara</button>
+            <button>Karena bereaksi dengan air</button>
+            <button>Karena didinginkan</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena bereaksi dengan air</div>
+          <div class="explain">
+            Semen berubah menjadi padat setelah dicampur air.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Terjadi reaksi hidrasi yang membentuk
+              struktur padat dan keras.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="area" id="taman">
+  <div class="area-header">
+    <h3>🌿 Taman</h3>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. AIR KOLAM -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/kolam-taman.jpg">
+          <div class="prompt">Kenapa air kolam bau kaporit?</div>
+          <div class="choices">
+            <button>Karena bercampur tanah</button>
+            <button>Karena mengandung zat pembunuh kuman</button>
+            <button>Karena terkena sinar matahari</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena mengandung zat pembunuh kuman</div>
+          <div class="explain">
+            Air kolam diberi zat tertentu agar tetap bersih dari mikroorganisme.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Kaporit mengandung klorin yang bereaksi
+              untuk membunuh bakteri dan alga.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TANAH SUBUR -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/tanah-subur.jpg">
+          <div class="prompt">Tanah yang subur biasanya mengandung?</div>
+          <div class="choices">
+            <button>Banyak air saja</button>
+            <button>Unsur hara penting</button>
+            <button>Batu dan pasir</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Unsur hara penting</div>
+          <div class="explain">
+            Unsur ini membantu tanaman tumbuh dengan baik.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Tanah subur mengandung nitrogen (N),
+              fosfor (P), dan kalium (K) yang dikenal sebagai NPK.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. AIR HUJAN -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/air-hujan.jpg">
+          <div class="prompt">Kenapa air hujan sedikit bersifat asam?</div>
+          <div class="choices">
+            <button>Karena tercampur debu</button>
+            <button>Karena menyerap gas di udara</button>
+            <button>Karena suhunya rendah</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena menyerap gas di udara</div>
+          <div class="explain">
+            Air hujan dapat melarutkan gas yang ada di atmosfer.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Gas CO₂ yang terlarut membentuk
+              asam karbonat dalam air hujan.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PESTISIDA -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/paving.jpg">
+          <div class="prompt">Pestisida bekerja dengan cara?</div>
+          <div class="choices">
+            <button>Memberi nutrisi tanaman</button>
+            <button>Mengendalikan hama</button>
+            <button>Menambah air tanah</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Mengendalikan hama</div>
+          <div class="explain">
+            Pestisida digunakan untuk melindungi tanaman dari organisme pengganggu.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Senyawa pestisida bekerja mengganggu
+              sistem biologis hama tertentu.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. FOTOSINTESIS -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/fotosintesis.jpg">
+          <div class="prompt">Fotosintesis menghasilkan apa?</div>
+          <div class="choices">
+            <button>Air dan mineral</button>
+            <button>Glukosa dan oksigen</button>
+            <button>Karbon dioksida</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Glukosa dan oksigen</div>
+          <div class="explain">
+            Proses ini penting sebagai dasar rantai makanan.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Fotosintesis mengubah CO₂ dan air
+              menjadi glukosa dan oksigen dengan bantuan cahaya.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+    <div class="area" id="supermarket">
+  <div class="area-header">
+    <h3>🛒 Supermarket</h3>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. MAKANAN KALENG -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/makanan-kaleng.jpg">
+          <div class="prompt">Kenapa makanan kaleng bisa tahan lama?</div>
+          <div class="choices">
+            <button>Karena disimpan di tempat dingin</button>
+            <button>Karena diproses agar mikroba tidak tumbuh</button>
+            <button>Karena dikeringkan</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena diproses agar mikroba tidak tumbuh</div>
+          <div class="explain">
+            Makanan kaleng dibuat agar aman disimpan dalam waktu lama.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Penggunaan pengawet seperti natrium benzoat
+              dapat menghambat pertumbuhan mikroorganisme.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. MINUMAN BERSODA -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/soda.jpg">
+          <div class="prompt">Kenapa minuman bersoda berbuih saat dibuka?</div>
+          <div class="choices">
+            <button>Karena tercampur udara</button>
+            <button>Karena gas keluar saat tekanan turun</button>
+            <button>Karena dikocok sebelumnya</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena gas keluar saat tekanan turun</div>
+          <div class="explain">
+            Gelembung muncul ketika kemasan dibuka.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Gas CO₂ terlarut akan keluar
+              ketika tekanan di dalam kemasan menurun.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. SUSU -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/susu.jpg">
+          <div class="prompt">Kenapa susu bisa basi jika dibiarkan di suhu ruang?</div>
+          <div class="choices">
+            <button>Karena terkena cahaya</button>
+            <button>Karena aktivitas bakteri</button>
+            <button>Karena airnya menguap</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena aktivitas bakteri</div>
+          <div class="explain">
+            Mikroorganisme berkembang lebih cepat pada suhu ruang.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Bakteri memfermentasi laktosa
+              menjadi asam sehingga susu menjadi basi.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. YOGHURT -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/yoghurt.jpg">
+          <div class="prompt">Kenapa yoghurt rasanya asam?</div>
+          <div class="choices">
+            <button>Karena ditambahkan cuka</button>
+            <button>Karena hasil fermentasi</button>
+            <button>Karena disimpan lama</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena hasil fermentasi</div>
+          <div class="explain">
+            Proses ini memberi rasa khas pada yoghurt.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Fermentasi menghasilkan asam laktat
+              yang menyebabkan rasa asam.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. HAND SANITIZER -->
+    <div class="card">
+      <div class="inner quiz-card">
+        <div class="face front">
+          <img src="images/hand-sanitizer.jpg">
+          <div class="prompt">Kenapa hand sanitizer cepat kering di tangan?</div>
+          <div class="choices">
+            <button>Karena diserap kulit</button>
+            <button>Karena alkohol mudah menguap</button>
+            <button>Karena terkena udara panas</button>
+          </div>
+          <div class="feedback"></div>
+        </div>
+        <div class="face back">
+          <div class="answer">Karena alkohol mudah menguap</div>
+          <div class="explain">
+            Cairan cepat hilang setelah digunakan.
+          </div>
+          <details>
+            <summary>🔍 Kenapa secara kimia?</summary>
+            <p>
+              Alkohol memiliki titik didih rendah
+              sehingga mudah menguap pada suhu ruang.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </section>
+</main>
+<footer>by Heni Indri Rahayu - 2025</footer>
+
+<!-- Audio untuk tombol dan flip card -->
+<audio id="btn-sound" src="sounds/mouse-click-tiapbtn.mp3"></audio>
+<audio id="correct-sound" src="sounds/mouse-click-tiapbtn.mp3"></audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =============================
+     SETUP AUDIO
+  ============================== */
+  const sounds = {
+    click: new Audio("sounds/mouse-click-tiapbtn.mp3"),
+    flip: new Audio("sounds/correct-flip-card.mp3"),
+    explain: new Audio("sounds/mouse-click-tiapbtn.mp3")
+  };
+
+  sounds.click.volume = 0.5;
+  sounds.flip.volume = 0.4;
+  sounds.explain.volume = 0.45;
+
+  function play(sound){
+    sound.currentTime = 0;
+    sound.play().catch(()=>{});
+  }
+
+  /* =============================
+     SEMUA TOMBOL (.btn)
+  ============================== */
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      play(sounds.click);
+    });
+  });
+
+  /* =============================
+     TOMBOL SCROLL KE AREA
+  ============================== */
+  document.querySelectorAll("[data-target]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = document.getElementById(btn.dataset.target);
+      if(target){
+        target.scrollIntoView({ behavior:"smooth", block:"start" });
+      }
+    });
+  });
+
+  /* =============================
+     FLIP MANUAL (KLIK KARTU)
+  ============================== */
+  document.querySelectorAll(".inner").forEach(card => {
+    card.addEventListener("click", (e) => {
+
+      // 🚫 klik di details → JANGAN flip
+      if (e.target.closest("details")) return;
+
+      // 🚫 klik button → biar button yang handle
+      if (e.target.closest("button")) return;
+
+      card.classList.toggle("is-flipped");
+      play(sounds.flip);
+    });
+  });
+
+  /* =============================
+     JAWABAN → FLIP KE BELAKANG
+  ============================== */
+  document.querySelectorAll(".choices button").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // PENTING
+      const card = btn.closest(".inner");
+      card.classList.add("is-flipped");
+      play(sounds.flip);
+    });
+  });
+
+  /* =============================
+     TUTUP PENJELASAN → BALIK DEPAN
+  ============================== */
+  document.querySelectorAll(".card details").forEach(detail => {
+    detail.addEventListener("toggle", () => {
+      const card = detail.closest(".inner");
+      if (!detail.open) {
+        card.classList.remove("is-flipped");
+      }
+    });
+  });
+
+});
+document.querySelectorAll(".card details summary").forEach(summary => {
+  summary.addEventListener("click", (e) => {
+    e.stopPropagation();   // ⬅ WAJIB
+    play(sounds.explain);
+  });
+});
+</script>
+</body>
+</html>
